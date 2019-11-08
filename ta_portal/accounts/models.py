@@ -22,7 +22,6 @@ class Assistant(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 	name = models.CharField(max_length=100)
 	department = models.CharField(max_length=100)
-	email = models.EmailField()
 	phone_number = models.CharField(max_length=10)
 
 
@@ -30,13 +29,11 @@ class Teacher(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 	name = models.CharField(max_length=100)
 	department = models.CharField(max_length=100)
-	email = models.EmailField()
 	phone_number = models.CharField(max_length=10)
 
 class Admin(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 	name = models.CharField(max_length=100)
-	email = models.EmailField()
 	phone_number = models.CharField(max_length=10)
 
 class Course(models.Model):
