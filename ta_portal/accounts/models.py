@@ -11,12 +11,12 @@ from django.contrib.auth.models import (
 # Create your models here.
 class User(AbstractUser):
 	USER_TYPES = (
-		('assistant'),
-		('teacher'),
-		('admin'),
+		(2,'assistant'),
+		(1,'teacher'),
+		(0,'admin'),
 	)
 	
-	user_type = models.CharField(choices=USER_TYPES)
+	user_type = models.IntegerField(choices=USER_TYPES)
 
 class Assistant(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -38,52 +38,52 @@ class Admin(models.Model):
 
 class Course(models.Model):
 	COURSE_TYPES = (
-		'Lab',
-		'Theory',
+		('L','Lab'),
+		('T','Theory'),
 	)
 	course_id = models.CharField(max_length=20)
 	name = models.CharField(max_length=255)
 	department = models.CharField(max_length=100)
 	credits = models.IntegerField()
-	teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, primary_key=True)
-	course_type = models.CharField(max_length=10, choices=COURSE_TYPES)
+	teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+	course_type = models.CharField(max_length=1, choices=COURSE_TYPES)
 
 class Assisting(models.Model):
-	assistant = models.ForeignKey(Assistant, on_delete=models.CASCADE, primary_key=True)
-	teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, primary_key=True)
-	course = models.ForeignKey(Course, on_delete=models.CASCADE, primary_key=True)
+	assistant = models.ForeignKey(Assistant, on_delete=models.CASCADE)
+	teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+	course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
 class Declaration(models.Model):
 	MONTHS = (
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
+		('Jan','January'),
+		('Feb','February'),
+		('Mar','March'),
+		('Apr','April'),
+		('May','May'),
+		('Jun','June'),
+		('Jul','July'),
+		('Aug','August'),
+		('Sep','September'),
+		('Oct','October'),
+		('Nov','November'),
+		('Dec','December'),
 	)
 	APPROVALS = (
-		'Yes',
-		'No',
+		('Y','Yes'),
+		('N','No'),
 	)
-	month = models.CharField(max_length=15, choices=MONTHS)
+	month = models.CharField(max_length=3, choices=MONTHS)
 	avg_hours = models.IntegerField()
 	days = models.IntegerField()
-	approval = models.CharField(max_length=3, choices=APPROVALS)
-	rating = models.DecimalField()
+	approval = models.CharField(max_length=1, choices=APPROVALS)
+	rating = models.DecimalField(max_digits=3, decimal_places=2)
 
 class assistant_preference(models.Model):
-	assistant = models.ForeignKey(Assistant, on_delete=models.CASCADE, primary_key=True)
-	course = models.ForeignKey(Course, on_delete=models.CASCADE, primary_key=True)
+	assistant = models.ForeignKey(Assistant, on_delete=models.CASCADE, default="", editable=False)
+	course = models.ForeignKey(Course, on_delete=models.CASCADE, default="")
 	preference = models.IntegerField()
 
-class assistant_preference(models.Model):
-	teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, primary_key=True)
-	assistant = models.ForeignKey(Assistant, on_delete=models.CASCADE, primary_key=True)
+class teacher_preference(models.Model):
+	teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+	assistant = models.ForeignKey(Assistant, on_delete=models.CASCADE)
 	preference = models.IntegerField()
