@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from decimal import Decimal
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import (
     	BaseUserManager, 
 	AbstractUser
@@ -16,6 +17,7 @@ class User(AbstractUser):
 		(0,'admin'),
 	)
 	
+	User = get_user_model()
 	user_type = models.IntegerField(choices=USER_TYPES)
 
 class Assistant(models.Model):
