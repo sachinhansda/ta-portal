@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect 
+''' from django.shortcuts import render, redirect 
 from accounts.forms import (
 	AssistantRegistrationForm,
 	TeacherRegistrationForm,
@@ -49,4 +49,4 @@ def change_password(request):
 		form = PasswordChangeForm(user=request.user)
 
 		args = {'form': form}
-		return render(request, 'accounts/change_password.html', args)
+		return render(request, 'accounts/change_password.html', args)   '''

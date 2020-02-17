@@ -1,4 +1,4 @@
-from django import forms
+''' from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from accounts.models import Assistant, Teacher, Admin, User
 
@@ -62,5 +62,5 @@ class TeacherRegistrationForm(UserCreationForm):
 		if commit:
 			user.save()
 
-		return user
+		return user  '''
 
