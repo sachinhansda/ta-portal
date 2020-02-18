@@ -26,6 +26,8 @@ class Profile(models.Model):
 
 	USERNAME_FIELD = 'user'
 	REQUIRED_FIELDS = []
+	is_anonymous = False
+	is_authenticated = True
 
     	def __str__(self):  # __unicode__ for Python 2
         	return self.user.username
