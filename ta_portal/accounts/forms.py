@@ -1,8 +1,8 @@
-''' from django import forms
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from accounts.models import Assistant, Teacher, Admin, User
+from accounts.models import Profile
 
-class AssistantRegistrationForm(UserCreationForm):
+''' class AssistantRegistrationForm(UserCreationForm):
 	name = forms.CharField()
 	department = forms.CharField()
 	phone_number = forms.CharField()
@@ -62,5 +62,15 @@ class TeacherRegistrationForm(UserCreationForm):
 		if commit:
 			user.save()
 
-		return user  '''
+		return user '''
+
+class EditProfileForm(UserChangeForm):
+	
+	class Meta:
+		model = Profile
+		fields = (
+			'profile.phone_number',
+			'email',
+			'password'
+		)
 
