@@ -18,7 +18,7 @@ class Profile(models.Model):
         	(TEACHER, 'Teacher'),
         	(ADMIN, 'Admin'),
     	)
-   	user = models.OneToOneField(User, on_delete=models.CASCADE)
+   	user = models.OneToOneField(User)
     	name = models.CharField(max_length=50, default='')
 	department = models.CharField(max_length=30, default='')
     	phone_number = models.CharField(max_length=10)
@@ -52,6 +52,9 @@ class Course(models.Model):
 
 class Assisting(models.Model):
 	assistant = models.ForeignKey(Profile, on_delete=models.CASCADE)
+	course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+class Teaching(models.Model):
 	teacher = models.ForeignKey(Profile, on_delete=models.CASCADE)
 	course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
@@ -86,6 +89,6 @@ class assistant_preference(models.Model):
 	preference = models.IntegerField()
 
 class teacher_preference(models.Model):
-	course = models.ForeignKey(Course, on_delete=models.CASCADE)
-	assistant = models.ForeignKey(Profile, on_delete=models.CASCADE)
+	course = models.ForeignKey(Course, on_delete=models.CASCADE, default="")
+	assistant = models.ForeignKey(Profile, on_delete=models.CASCADE, default="")
 	preference = models.IntegerField()
