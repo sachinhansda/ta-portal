@@ -24,6 +24,9 @@ class Profile(models.Model):
     	phone_number = models.CharField(max_length=10)
     	role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, null=True, blank=True)
 
+	USERNAME_FIELD = 'user'
+	REQUIRED_FIELDS = []
+
     	def __str__(self):  # __unicode__ for Python 2
         	return self.user.username
 
