@@ -25,7 +25,7 @@ def edit_profile(request):
 			custom_form = profile_form.save(False)
             		custom_form.user = user_form
             		custom_form.save()
-			return redirect('/account/profile')
+			return redirect('/accounts/profile')
 
 	else:
 		form = EditProfileForm(instance=request.user)
