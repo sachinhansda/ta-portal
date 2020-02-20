@@ -47,6 +47,7 @@ class Course(models.Model):
 	name = models.CharField(max_length=255)
 	department = models.CharField(max_length=100)
 	credits = models.IntegerField()
+	students = models.IntegerField(default=0)
 	teacher = models.ForeignKey(Profile, on_delete=models.CASCADE)
 	course_type = models.CharField(max_length=1, choices=COURSE_TYPES)
 

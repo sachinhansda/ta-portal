@@ -33,6 +33,9 @@ def edit_profile(request):
 		args = {'form': form, 'profile_form': profile_form}
 		return render(request, 'accounts/edit_profile.html', args)
 
+def add(request):
+	args = {}
+	return render(request, 'accounts/add.html', args)
 
 ''' def change_password(request):
 	if request.method == 'POST':
