@@ -1,5 +1,7 @@
 from django import forms
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.forms import ModelForm
 from accounts.models import Profile
 
 ''' class AssistantRegistrationForm(UserCreationForm):
@@ -64,13 +66,17 @@ class TeacherRegistrationForm(UserCreationForm):
 
 		return user '''
 
-class EditProfileForm(UserChangeForm):
+class EditProfileForm(ModelForm):
 	
+	class Meta:
+		model = User
+		fields = (
+			'email',
+		)
+
+class ProfileForm(ModelForm):
 	class Meta:
 		model = Profile
 		fields = (
-			'profile.phone_number',
-			'email',
-			'password'
+			'phone_number',
 		)
-
