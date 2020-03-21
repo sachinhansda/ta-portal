@@ -37,7 +37,11 @@ def add(request):
 	args = {}
 	return render(request, 'accounts/add.html', args)
 
-''' def change_password(request):
+def profile(request):
+	args = {}
+	return render(request, 'accounts/profile_view.html', args)
+
+def change_password(request):
 	if request.method == 'POST':
 		form = PasswordChangeForm(data=request.POST, user=request.user)
 
@@ -51,4 +55,4 @@ def add(request):
 		form = PasswordChangeForm(user=request.user)
 
 		args = {'form': form}
-		return render(request, 'accounts/change_password.html', args)   '''
+		return render(request, 'accounts/change_password.html', args)
