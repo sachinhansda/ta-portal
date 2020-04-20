@@ -4,11 +4,12 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from accounts.forms import EditProfileForm, ProfileForm
+#from accounts.forms import EditProfileForm, ProfileForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+"""
 def view_profile(request):
 	user = request.user
 	args = {'user': user}
@@ -56,3 +57,4 @@ def change_password(request):
 
 		args = {'form': form}
 		return render(request, 'accounts/change_password.html', args)
+"""
